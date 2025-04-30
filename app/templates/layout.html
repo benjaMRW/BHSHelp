@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="top-section">
+      <div class="logo-title">
+        <img src="{{ url_for('static', filename='image/logo.png') }}" alt="Burnside High School Logo" class="logo">
+        <div class="site-title">{% block page_title %}Welcome{% endblock %}</div>
+      </div>
+      <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+    </div>
+
+    <div class="dropdown">
+      <button onclick="toggleDropdown()" class="dropbtn">Menu</button>
+      <div id="dropdownContent" class="dropdown-content">
+        <a href="#">home</a>
+        <a href="#">school map</a>
+        <a href="#">subjects</a>
+        <a href="#">notices</a>
+        <a href="#">log in</a>
+        
+      </div>
+    </div>
+  </header>
+
+  <main class="content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>© 2025 Burnside High School Help</footer>
+
+<script>
+  function toggleMenu() {
+    const menu = document.getElementById("navMenu");
+    menu.classList.toggle("show");
+  }
+</script>
+
+</body>
+</html>
+<!-- because my low level of programing i use chat GPT for helping in this code -->
+<script>
+  function toggleDropdown() {
+    const dropdown = document.querySelector(".dropdown");
+    dropdown.classList.toggle("show");
+  }
+
+  // Optional: Click outside to close dropdown
+  window.onclick = function(e) {
+    if (!e.target.matches('.dropbtn')) {
+      var dropdowns = document.getElementsByClassName("dropdown");
+      for (let d of dropdowns) {
+        d.classList.remove('show');
+      }
+    }
+  }
+</script>
