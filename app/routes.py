@@ -18,6 +18,11 @@ import app.models as models
 def root():
     return render_template('home.html', page_title='HomePage')
 
+@app.route('/subject')
+def subjects():
+    return render_template('subjects.html', page_title='Subjects')
+
+
 # @app.route('/map')
 # def root():
 #     return render_template('map.html', page_title='BHSmap')
