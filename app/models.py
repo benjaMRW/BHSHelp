@@ -10,14 +10,15 @@ class Person(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)  # ✅ add this
     role = Column(String, nullable=False)
     hobbies = Column(Text, nullable=True)
-
+    
     # Relationships
     credits = relationship('Credit', back_populates='person')
     subjects = relationship('PersonSubject', back_populates='person')
     hobbies_association = relationship('PersonHobby', back_populates='person')
-
+    
 # Hobbies table
 class Hobby(Base):
     __tablename__ = 'hobbies'

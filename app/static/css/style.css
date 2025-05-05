@@ -108,6 +108,7 @@ footer {
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  margin-top: 25px;
 }
 
 .dropdown-content {
