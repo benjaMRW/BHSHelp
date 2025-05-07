@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}School Notices{% endblock %}
+{% block page_title %}School Notices{% endblock %}
+
+{% block content %}
+<div class="notices-container">
+  {% if error %}
+    <div class="error-message">{{ error }}</div>
+  {% endif %}
+
+  {% if notices %}
+    {% for notice in notices %}
+    <div class="notice-card">
+        <div class="notice-meta">
+            {{ notice.category }} • {{ notice.pubDate }}
+        </div>
+        <div class="notice-title">{{ notice.title }}</div>
+        <div class="notice-content">
+            {{ notice.description|safe }}
+        </div>
+        {% if '@burnside.school.nz' in notice.description %}
+            <div class="notice-contact">
+                Contact: {{ notice.description|regex_find_email }}
+            </div>
+        {% endif %}
+    </div>
+    {% endfor %}
+  {% else %}
+    <div class="no-notices">No notices available at this time.</div>
+  {% endif %}
+</div>
+{% endblock %}
