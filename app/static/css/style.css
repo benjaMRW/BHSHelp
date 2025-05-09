@@ -201,3 +201,24 @@ footer {
   background: rgba(255,255,255,0.1);
   border-radius: 5px;
 }
+
+.student-info {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  color: #333;
+  border-radius: 5px;
+}
+
+.info-section {
+  margin: 20px 0;
+  padding: 15px;
+  background: #f9f9f9;
+  border-left: 4px solid #00a86b;
+}
+
+.info-section h3 {
+  color: #004e42;
+  margin-top: 0;
+}

@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}Student Info{% endblock %}
+{% block page_title %}Your Student Dashboard{% endblock %}
+
+{% block content %}
+<div class="student-info">
+    <h2>Welcome, {{ email }}</h2>
+
+    <div class="info-section">
+        <h3>Grades</h3>
+        {% if grades %}
+            <ul>
+                {% for grade in grades %}
+                    <li>{{ grade }}</li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No grade data available.</p>
+        {% endif %}
+    </div>
+
+    <div class="info-section">
+        <h3>Attendance</h3>
+        <p>{{ attendance }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -9,6 +9,14 @@ from bs4 import BeautifulSoup
 from datetime import time
 import feedparser
 import pytz
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
+import time
+from webdriver_manager.chrome import ChromeDriverManager
+import app.models as models
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 db = SQLAlchemy()
@@ -16,7 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, "sc
 db.init_app(app)
       
 
-import app.models as models
+
 
 
 # basic route
@@ -32,34 +40,67 @@ def subjects():
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if request.method == 'POST':
-        # Safely get the values from the form
-        email = request.form.get('email')
-        password = request.form.get('password')
+def login_to_burnside(email, password):
+    try:
+        # Configure Chrome (runs in background)
+        options = webdriver.ChromeOptions()
+        options.add_argument("--headless")  # No browser window pops up
+        options.add_argument("--disable-gpu")
+        
+        # Automatic ChromeDriver setup
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+        driver.get("https://burnside.school.kiwi/")
 
-        if not email or not password:
-            flash("Please fill in both fields.")
-            return render_template('LogIn.html')
+        # Wait for login form and fill credentials
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.ID, "username"))  # CHANGE THIS SELECTOR
+        ).send_keys(email)
+        
+        driver.find_element(By.ID, "password").send_keys(password)  # CHANGE THIS
+        driver.find_element(By.ID, "login-button").click()  # CHANGE THIS
 
-        # Now email and password are defined
-        result = login_to_burnside(email, password)
+        # Wait for dashboard to load (check for a unique element)
+        WebDriverWait(driver, 10).until(
+            EC.presence_of_element_located((By.CLASS_NAME, "dashboard"))  # CHANGE THIS
+        )
 
-        if result:
-            return result  # You can also render_template here with the info
-        else:
-            flash("Login to Burnside website failed.")
-            return render_template('LogIn.html')
+        # --- SCRAPE STUDENT DATA ---
+        # Example: Fetch grades (customize selectors)
+        grades = []
+        grade_elements = driver.find_elements(By.CSS_SELECTOR, ".grade-item")  # CHANGE THIS
+        for grade in grade_elements:
+            grades.append(grade.text)
 
-    return render_template('LogIn.html')
+        # Example: Fetch attendance
+        attendance = driver.find_element(By.CLASS_NAME, "attendance").text  # CHANGE THIS
 
+        # Store data in Flask session
+        session['logged_in'] = True
+        session['email'] = email
+        session['grades'] = grades
+        session['attendance'] = attendance
 
+        # Close browser
+        driver.quit()
 
+        # Redirect to student info page
+        return redirect(url_for('student_info'))
 
+    except Exception as e:
+        print("Error:", e)
+        return None  # Login failed
 
-
-# ... (keep your existing login and other routes)
+@app.route('/students')
+def students():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    
+    return render_template(
+        'student.html',
+        email=session['email'],
+        grades=session.get('grades', []),
+        attendance=session.get('attendance', 'No data')
+    )
 
 @app.route('/notices')
 def notices():
