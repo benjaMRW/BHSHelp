@@ -5,23 +5,20 @@
 
 {% block content %}
 <div class="notices-container">
-  {% if error %}
-    <div class="error-message">{{ error }}</div>
-  {% endif %}
-
   {% if notices %}
     {% for notice in notices %}
     <div class="notice-card">
         <div class="notice-meta">
-            {{ notice.category }} • {{ notice.pubDate }}
+            {{ notice.date }}  {# Changed from notice.category and notice.pubDate #}
         </div>
-        <div class="notice-title">{{ notice.title }}</div>
+        <h3 class="notice-title">{{ notice.title }}</h3>
         <div class="notice-content">
-            {{ notice.description|safe }}
+            {{ notice.content|safe }}  {# Changed from notice.description #}
         </div>
-        {% if '@burnside.school.nz' in notice.description %}
+        {# Simplified contact display - removed email regex since we don't have that filter #}
+        {% if notice.content and '@' in notice.content %}
             <div class="notice-contact">
-                Contact: {{ notice.description|regex_find_email }}
+                Contact information in notice content
             </div>
         {% endif %}
     </div>

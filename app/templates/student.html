@@ -1,28 +1,20 @@
 {% extends 'layout.html' %}
 
-{% block title %}Student Info{% endblock %}
-{% block page_title %}Your Student Dashboard{% endblock %}
-
 {% block content %}
-<div class="student-info">
-    <h2>Welcome, {{ email }}</h2>
+<div class="student-portal">
+    <header class="portal-header">
+        <h2>Student Dashboard</h2>
+        <a href="{{ url_for('logout') }}" class="btn btn-logout">Logout</a>
+    </header>
 
-    <div class="info-section">
-        <h3>Grades</h3>
-        {% if grades %}
-            <ul>
-                {% for grade in grades %}
-                    <li>{{ grade }}</li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>No grade data available.</p>
-        {% endif %}
-    </div>
+    <section class="data-section">
+        <h3>Your Attendance</h3>
+        <!-- Attendance table -->
+    </section>
 
-    <div class="info-section">
-        <h3>Attendance</h3>
-        <p>{{ attendance }}</p>
-    </div>
+    <section class="data-section">
+        <h3>Your Credits</h3>
+        <!-- Credits table -->
+    </section>
 </div>
 {% endblock %}
