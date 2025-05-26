@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<center><div class="map-container">
+    {{ map_html|safe }}
+  </div></center>
+{% endblock %}
