@@ -1,129 +1,260 @@
 {% extends 'layout.html' %}
 
 {% block title %}Subjects{% endblock %}
-{% block page_title %}subjects information{% endblock %}
+{% block page_title %}Subject Information{% endblock %}
 
 {% block content %}
-<body>
-    <h1>Burnside High School - Christchurch, New Zealand</h1>
+<div class="subject-page">
+    <h1>Burnside High School - Subject Selection</h1>
     
     <div class="highlight">
         <p><strong>📍 Location:</strong> Christchurch, New Zealand<br>
         <strong>🏫 Type:</strong> State Co-Educational Secondary School (Years 9-13)<br>
-        <strong>🎓 Academic System:</strong> NCEA (National Certificate of Educational Achievement)<br>
-        <strong>🌟 Reputation:</strong> One of NZ's largest & top-performing schools, known for strong academics, arts, and sports.</p>
+        <strong>🎓 Academic System:</strong> NCEA (National Certificate of Educational Achievement)</p>
     </div>
 
-    <h2>Subjects Offered</h2>
-    <p>Subjects vary by year level (Junior Years 9-10 & Senior Years 11-13). Here's a general breakdown:</p>
+    <div class="subject-tabs">
+        <button class="tab-button active" onclick="openTab('all-subjects')">All Subjects</button>
+        <button class="tab-button" onclick="openTab('career-advice')">Career Subject Advisor</button>
+    </div>
 
-    <h3>Core Subjects (Compulsory in Junior Years)</h3>
-    <ul>
-        <li><strong>English</strong></li>
-        <li><strong>Mathematics</strong></li>
-        <li><strong>Science</strong> (General Science → Splits into Biology, Chemistry, Physics in senior years)</li>
-        <li><strong>Social Sciences</strong> (History, Geography, Economics)</li>
-        <li><strong>Physical Education & Health</strong></li>
-    </ul>
-
-    <h3>Elective Subjects (Years 9-13)</h3>
+    <!-- Existing subject listing -->
+    <div id="all-subjects" class="tab-content" style="display: block;">
+        <h2>Subjects Offered</h2>
+        <p>Subjects vary by year level (Junior Years 9-10 & Senior Years 11-13). Here's a general breakdown:</p>
     
-    <div class="subject-category">
-        <h4>Languages</h4>
-        <ul>
-            <li>Te Reo Māori</li>
-            <li>French</li>
-            <li>Japanese</li>
-            <li>Spanish</li>
-            <li>Latin</li>
-        </ul>
+        <div class="subject-category">
+            <h3>English & Languages</h3>
+            <ul>
+                <li>English</li>
+                <li>English Language Learning (ELL)</li>
+                <li>Te Reo Māori</li>
+                <li>French</li>
+                <li>German</li>
+                <li>Japanese</li>
+                <li>Spanish</li>
+                <li>Latin</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>Mathematics</h3>
+            <ul>
+                <li>Mathematics</li>
+                <li>Mathematics with Calculus</li>
+                <li>Mathematics with Statistics</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>Sciences</h3>
+            <ul>
+                <li>Science (Junior)</li>
+                <li>Biology</li>
+                <li>Chemistry</li>
+                <li>Physics</li>
+                <li>Earth and Space Science</li>
+                <li>Agricultural and Horticultural Science</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>Social Sciences</h3>
+            <ul>
+                <li>Social Studies (Junior)</li>
+                <li>Geography</li>
+                <li>History</li>
+                <li>Classical Studies</li>
+                <li>Economics</li>
+                <li>Accounting</li>
+                <li>Business Studies</li>
+                <li>Legal Studies</li>
+                <li>Psychology</li>
+                <li>Tourism</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>Technology</h3>
+            <ul>
+                <li>Digital Technologies</li>
+                <li>Design and Visual Communication (Graphics)</li>
+                <li>Hard Technology (Wood, Metal)</li>
+                <li>Soft Technology (Textiles)</li>
+                <li>Food Technology</li>
+                <li>Hospitality</li>
+                <li>Engineering</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>The Arts</h3>
+            <ul>
+                <li>Visual Art</li>
+                <li>Photography</li>
+                <li>Art History</li>
+                <li>Drama</li>
+                <li>Music</li>
+                <li>Dance</li>
+                <li>Media Studies</li>
+            </ul>
+        </div>
+    
+        <div class="subject-category">
+            <h3>Physical Education & Health</h3>
+            <ul>
+                <li>Physical Education</li>
+                <li>Health Education</li>
+                <li>Outdoor Education</li>
+                <li>Sports Science</li>
+            </ul>
+        </div>
+    
+        <div class="notice">
+            <p>💡 <strong>Note:</strong> Senior subjects (Years 11-13) may have prerequisites. 
+            Some subjects like Calculus and Physics require junior mathematics achievement.</p>
+        </div>
     </div>
 
-    <div class="subject-category">
-        <h4>Arts & Creative Fields</h4>
-        <ul>
-            <li>Visual Arts (Painting, Design, Photography)</li>
-            <li>Music (Performance, Composition, Music Technology)</li>
-            <li>Drama & Theatre Studies</li>
-            <li>Dance (Performance & Choreography)</li>
-        </ul>
+   <!-- New Career Advisor Section -->
+<div id="career-advice" class="tab-content">
+    <h2>Career Subject Advisor</h2>
+    <p>Discover which subjects align with your career goals</p>
+    
+    <div class="career-form">
+        <div class="form-group">
+            <label for="career">Select your career interest:</label>
+            <select id="career">
+                <option value="">-- Choose a career path --</option>
+                <option value="engineering">Engineering</option>
+                <option value="medicine">Medicine/Healthcare</option>
+                <option value="it">Information Technology</option>
+                <option value="business">Business/Commerce</option>
+                <option value="law">Law</option>
+                <option value="other">Other Careers</option>
+            </select>
+        </div>
+        
+        <button class="submit-btn" onclick="suggestSubjects()">Get Subject Recommendations</button>
     </div>
-
-    <div class="subject-category">
-        <h4>Technology & Applied Skills</h4>
-        <ul>
-            <li>Digital Technology (Programming, Computer Science)</li>
-            <li>Design & Visual Communication (DVC)</li>
-            <li>Hard Materials (Woodwork, Metalwork)</li>
-            <li>Soft Materials (Textiles, Fashion Design)</li>
-            <li>Food Technology & Nutrition</li>
-        </ul>
+    
+    <div id="career-results">
+        <!-- Results will appear here -->
+        <div class="career-results-card">
+            <div class="career-info">
+                <p>Select a career path to see recommended subjects</p>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="subject-category">
-        <h4>Humanities & Social Sciences</h4>
-        <ul>
-            <li>Classical Studies</li>
-            <li>Psychology</li>
-            <li>Media Studies</li>
-            <li>Legal Studies</li>
-            <li>Tourism</li>
-        </ul>
-    </div>
+<script>
+    // Tab functionality
+    function openTab(tabName) {
+        const tabs = document.getElementsByClassName("tab-content");
+        for (let tab of tabs) {
+            tab.style.display = "none";
+        }
+        document.getElementById(tabName).style.display = "block";
+        
+        const buttons = document.getElementsByClassName("tab-button");
+        for (let btn of buttons) {
+            btn.classList.remove("active");
+        }
+        event.currentTarget.classList.add("active");
+    }
 
-    <div class="subject-category">
-        <h4>Sciences & STEM</h4>
-        <ul>
-            <li>Biology</li>
-            <li>Chemistry</li>
-            <li>Physics</li>
-            <li>Environmental Science</li>
-            <li>Astronomy (Senior Levels)</li>
-        </ul>
-    </div>
+    // Career to subjects mapping
+    const careerSubjects = {
+        engineering: {
+            essential: ["Mathematics with Calculus", "Physics"],
+            recommended: ["Chemistry", "Design and Visual Communication"],
+            info: "Focus on math and physics. Engineering requires strong problem-solving skills."
+        },
+        medicine: {
+            essential: ["Biology", "Chemistry"],
+            recommended: ["Physics", "Health Education"],
+            info: "Biology and Chemistry are essential for medical careers."
+        },
+        it: {
+            essential: ["Digital Technologies"],
+            recommended: ["Mathematics", "Design and Visual Communication"],
+            info: "Programming skills are key. Build projects to showcase your abilities."
+        },
+        business: {
+            essential: ["Mathematics", "English"],
+            recommended: ["Accounting", "Economics"],
+            info: "Develop analytical and communication skills for business careers."
+        },
+        law: {
+            essential: ["English"],
+            recommended: ["History", "Legal Studies"],
+            info: "Focus on critical thinking and persuasive communication."
+        }
+    };
 
-    <div class="subject-category">
-        <h4>Mathematics & Computing</h4>
-        <ul>
-            <li>Calculus</li>
-            <li>Statistics</li>
-            <li>Computer Science</li>
-        </ul>
-    </div>
-
-    <div class="subject-category">
-        <h4>Commerce & Business</h4>
-        <ul>
-            <li>Accounting</li>
-            <li>Business Studies</li>
-            <li>Economics</li>
-        </ul>
-    </div>
-
-    <h2>Special Programs & Opportunities</h2>
-    <ul>
-        <li><strong>Academies:</strong> Sports Academies (e.g., football, netball), Performing Arts Academies.</li>
-        <li><strong>Scholarships:</strong> Support for high-achieving students (e.g., University Entrance Scholarships).</li>
-        <li><strong>Exchange Programs:</strong> International student exchanges (e.g., Japan, France).</li>
-        <li><strong>GATE Program:</strong> Gifted and Talented Education for advanced learners.</li>
-    </ul>
-
-    <h2>NCEA & Academic Pathways</h2>
-    <ul>
-        <li><strong>Years 11-13:</strong> Students work toward NCEA Levels 1-3, with options for University Entrance (UE).</li>
-        <li><strong>Vocational Pathways:</strong> Trades, Technology, and Applied subjects for non-university routes.</li>
-    </ul>
-
-    <div class="contact-box">
-        <h3>How to Access Detailed Information?</h3>
-        <ol>
-            <li><strong>Official Website:</strong> <a href="https://www.burnside.school.nz/" target="_blank">Burnside High School</a>
-                <ul>
-                    <li>Check the <em>Curriculum</em> or <em>Subject Selection</em> handbooks.</li>
-                </ul>
-            </li>
-            <li><strong>Contact the School:</strong> Email enquiries or visit for course guides.</li>
-        </ol>
-    </div>
-</body>
+    function suggestSubjects() {
+        const career = document.getElementById("career").value;
+        const resultsDiv = document.getElementById("career-results");
+        
+        if (!career) {
+            alert("Please select a career path");
+            return;
+        }
+        
+        if (career === "other") {
+            resultsDiv.innerHTML = `
+                <div class="career-results-card">
+                    <h3>Personalized Career Advice</h3>
+                    <div class="career-info">
+                        <p>For specialized career guidance, contact our Career Department:</p>
+                        <div class="appointment-info">
+                            <p>✉️ careers@burnside.school.nz</p>
+                            <p>📞 (03) 123-4567</p>
+                            <p>📍 Student Services Centre</p>
+                        </div>
+                        <button class="appointment-btn" onclick="location.href='mailto:careers@burnside.school.nz'">
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+            `;
+            return;
+        }
+        
+        const subjects = careerSubjects[career];
+        const careerName = document.getElementById("career").options[document.getElementById("career").selectedIndex].text;
+        
+        let html = `<div class="career-results-card">
+            <h3>${careerName} Pathway</h3>`;
+        
+        if (subjects.essential) {
+            html += "<h4>Essential Subjects</h4><ul class='subject-list essential'>";
+            subjects.essential.forEach(subject => {
+                html += `<li>${subject}</li>`;
+            });
+            html += "</ul>";
+        }
+        
+        if (subjects.recommended) {
+            html += "<h4>Recommended Subjects</h4><ul class='subject-list'>";
+            subjects.recommended.forEach(subject => {
+                html += `<li>${subject}</li>`;
+            });
+            html += "</ul>";
+        }
+        
+        if (subjects.info) {
+            html += `<div class="career-info">${subjects.info}</div>`;
+        }
+        
+        html += `
+            <div class="career-info">
+                <p>For personalized guidance, visit the Career Department</p>
+            </div>
+        </div>`;
+        
+        resultsDiv.innerHTML = html;
+    }
+</script>
 {% endblock %}

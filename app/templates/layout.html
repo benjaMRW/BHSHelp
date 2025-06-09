@@ -14,9 +14,12 @@
         <img src="{{ url_for('static', filename='image/BurnsideLogo.png') }}" alt="Burnside High School Logo" class="logo">
         <div class="site-title">{% block page_title %}Welcome{% endblock %}</div>
       </div>
+      {% if request.path != '/' %}
       <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
+      {% endif %}
     </div>
 
+    {% if request.path != '/' %}
     <div class="dropdown">
       <button onclick="toggleDropdown()" class="dropbtn">Menu</button>
       <div id="dropdownContent" class="dropdown-content">
@@ -26,11 +29,9 @@
         <a href="notices">Notices</a>
         <a href="student">Students</a>
         <a href="login">Log in</a>
-        
-        
-        
       </div>
     </div>
+    {% endif %}
   </header>
 
   <main class="content">
@@ -44,12 +45,7 @@
     const menu = document.getElementById("navMenu");
     menu.classList.toggle("show");
   }
-</script>
 
-</body>
-</html>
-<!-- because my low level of programing i use chat GPT for helping in this code -->
-<script>
   function toggleDropdown() {
     const dropdown = document.querySelector(".dropdown");
     dropdown.classList.toggle("show");
@@ -65,7 +61,5 @@
     }
   }
 </script>
-  <!-- Elfsight AI Chatbot | Untitled AI Chatbot -->
-<script src="https://static.elfsight.com/platform/platform.js" async></script>
-<div class="elfsight-app-657ac126-0a3e-4996-9807-27cb4c402593" data-elfsight-app-lazy></div>
-
+</body>
+</html>

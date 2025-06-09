@@ -219,28 +219,45 @@ footer {
   font-size: 0.9em;
 }
 
-/* Map Container */
 .map-container {
-  position: relative;
-  width: 120%;
-  border: 1px solid #ddd;
-  margin: 20px 0;
+  width: 100%;
+  max-width: 1200px;
+  height: 600px; /* Fixed height works better for maps */
+  margin: 20px auto;
+  border: 1px solid #00a86b;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-
-.rotate-hint {
-  font-size: 12px;
-  color: #666;
-  margin-top: 5px;
+/* For mobile responsiveness */
+@media (max-width: 768px) {
+  .map-container {
+    height: 400px;
+    margin: 10px 0;
+  }
 }
 
-/* Minimal Map Controls */
-.leaflet-control-container .leaflet-top {
-  top: 60px; /* Avoids conflict with header */
+/* Custom popup styling */
+.leaflet-popup-content-wrapper {
+  border-radius: 8px !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2) !important;
 }
 
-.leaflet-control-attribution {
-  display: none !important;
+.leaflet-popup-content {
+  font-family: Arial, sans-serif;
+  margin: 12px !important;
+  min-width: 200px;
+}
+
+/* Custom marker styling */
+.custom-marker {
+  background: #00a86b;
+  border: 2px solid white;
+  border-radius: 50%;
+  width: 24px !important;
+  height: 24px !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
 /* Minimal Popup Styling */
@@ -257,4 +274,244 @@ footer {
 /* Cleaner markers */
 .leaflet-marker-icon {
   filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.2));
+}
+/* Home Page Specific Styles */
+.home-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+.intro-text {
+  text-align: center;
+  margin: 30px auto 60px;
+  max-width: 900px;
+  font-size: 1.3em;
+  line-height: 1.7;
+  color: #ffffff;
+}
+
+.button-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.button-row {
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  width: 100%;
+}
+
+.feature-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  padding: 40px 20px;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+  transition: all 0.3s ease;
+  min-height: 200px;
+  width: 22%; /* Makes 4 buttons fit nicely */
+  backdrop-filter: blur(5px);
+}
+
+.feature-button:hover {
+  transform: translateY(-8px);
+  background-color: rgba(0, 168, 107, 0.4);
+  border-color: #00a86b;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+}
+
+.button-icon {
+  font-size: 4em;
+  margin-bottom: 20px;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.button-text {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .feature-button {
+    width: 23%;
+    padding: 35px 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  .button-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .feature-button {
+    width: 45%;
+    min-height: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .button-rows {
+    gap: 30px;
+  }
+  
+  .feature-button {
+    width: 100%;
+    max-width: 350px;
+    min-height: 160px;
+    padding: 30px 15px;
+  }
+  
+  .button-icon {
+    font-size: 3.5em;
+  }
+  
+  .button-text {
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-container {
+    padding: 20px;
+  }
+  
+  .intro-text {
+    font-size: 1.1em;
+    margin: 20px auto 40px;
+  }
+}
+/* Subject Page Styles */
+.subject-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.subject-tabs {
+  display: flex;
+  margin: 30px 0 20px;
+  border-bottom: 2px solid #00a86b;
+}
+
+.tab-button {
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  margin-right: 5px;
+  transition: all 0.3s;
+}
+
+.tab-button:hover {
+  background: rgba(0, 168, 107, 0.3);
+}
+
+.tab-button.active {
+  background: #00a86b;
+  font-weight: bold;
+}
+
+.tab-content {
+  display: none;
+  padding: 20px 0;
+}
+
+/* Career Advisor Styles */
+.career-form {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.career-form .form-group {
+  margin-bottom: 15px;
+}
+
+.career-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.career-form select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+}
+
+.submit-btn {
+  background: #00a86b;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.submit-btn:hover {
+  background: #008c58;
+}
+
+.career-results-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.subject-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.subject-list li {
+  padding: 8px 15px;
+  margin: 5px 0;
+  border-radius: 4px;
+}
+
+.subject-list.essential li {
+  background: rgba(255, 100, 100, 0.2);
+  border-left: 4px solid #ff6b6b;
+}
+
+.subject-list.recommended li {
+  background: rgba(255, 200, 100, 0.2);
+  border-left: 4px solid #ffc864;
+}
+
+.subject-list.useful li {
+  background: rgba(100, 255, 100, 0.2);
+  border-left: 4px solid #64ff64;
+}
+
+.career-info {
+  margin-top: 20px;
+  padding: 15px;
+  background: rgba(0, 168, 107, 0.1);
+  border-left: 4px solid #00a86b;
+  border-radius: 4px;
 }
