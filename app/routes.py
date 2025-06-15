@@ -30,6 +30,12 @@ db = SQLAlchemy(app)
 def home():
     return render_template('home.html', page_title='Home')
 
+
+@app.route('/login')
+def login():
+    return render_template('login.html', page_title='Home')
+
+
 @app.route('/subjects')
 def subjects():
     return render_template('subjects.html', page_title='Home')
@@ -116,5 +122,3 @@ def get_school_notices():
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
