@@ -146,6 +146,25 @@ footer {
   pointer-events: auto;
 }
 
+button{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #00a86b;
+  color: white;
+  padding: 10px 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 25px;
+  text-emphasis: none;
+}
+a{
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+}
 /* Add these styles to your existing CSS file */
 
 /* Update your notice-card styles in style.css */
@@ -515,3 +534,94 @@ footer {
   border-left: 4px solid #00a86b;
   border-radius: 4px;
 }
+/* Login Page Styles */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.login-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: white;
+}
+
+.login-form .form-group {
+  margin-bottom: 25px;  /* Increased spacing */
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 10px;  /* Increased spacing */
+  color: white;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.9);
+  font-size: 16/* Login Page Styles */
+  .login-container {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(5px);
+  }
+  
+  .login-container h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: white;
+  }
+  
+  .login-form .form-group {
+      margin-bottom: 25px;
+  }
+  
+  .login-form label {
+      display: block;
+      margin-bottom: 10px;
+      color: white;
+  }
+  
+  .login-form input {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 16px;
+  }
+  
+  .button-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+  }
+  
+  .login-form .submit-btn {
+      width: 100%;
+      max-width: 200px;
+      padding: 14px;
+      background: #00a86b;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+  }
+  
+  .login-form .submit-btn:hover {
+      background: #008c58;
+  }

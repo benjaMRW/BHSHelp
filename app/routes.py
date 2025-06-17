@@ -30,11 +30,17 @@ db = SQLAlchemy(app)
 def home():
     return render_template('home.html', page_title='Home')
 
+@app.route('/career')
+def kol():
+    return render_template('career.html', page_title='Home')
 
 @app.route('/login')
 def login():
     return render_template('login.html', page_title='Home')
 
+@app.route('/student')
+def students():
+    return render_template('student.html', page_title='Home')
 
 @app.route('/subjects')
 def subjects():

@@ -18,7 +18,11 @@
       <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
       {% endif %}
     </div>
-
+    <div>
+      {% if request.path == '/' %}
+      <button><a href="/login">log in</a></button>
+      {% endif %}
+    </div>
     {% if request.path != '/' %}
     <div class="dropdown">
       <button onclick="toggleDropdown()" class="dropbtn">Menu</button>

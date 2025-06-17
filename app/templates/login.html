@@ -1,24 +1,25 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ page_title }}{% endblock %}
-{% block page_title %}{{ page_title }}{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
-
-<center><div class="career-form">
-    <div class="form-group">
-        <label for="career">Select your career interest:</label>
-        <select id="career" class="form-control">
-            <option value="">-- Choose a career path --</option>
-            <option value="engineering">Engineering</option>
-            <option value="medicine">Medicine/Healthcare</option>
-            <option value="it">Information Technology</option>
-            <option value="business">Business/Commerce</option>
-            <option value="law">Law</option>
-            <option value="arts">Arts/Creative Fields</option>
-            <option value="education">Education</option>
-            <option value="other">Other Careers</option>
-        </select>
-    </div>
-</center>
+<div class="login-container">
+    <h1>Login</h1>
+    
+    <form class="login-form" method="POST" action="/login">
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        
+        <div class="button-container">
+            <button type="submit" class="submit-btn">Login</button>
+        </div>
+    </form>
+</div>
 {% endblock %}
