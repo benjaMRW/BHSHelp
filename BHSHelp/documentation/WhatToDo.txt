@@ -1,0 +1,30 @@
+home:
+-period end
+-register or log in button
+-log out 
+-profile info
+
+map
+
+subject info: 
+-make it prettier
+
+student help:
+-links to everything
+-school uniform
+-business
+
+-social media for school
+
+-translate website
+-notification
+
+career:
+-buttons better look
+-burnside careers office
+
+-explain how ncea works
+
+next:
+-register now do the hrmlS
+-

@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ page_title }}{% endblock %}
+{% block page_title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="map-page-container">
+  <div class="map-header">
+    <h1>Burnside High School Campus Map</h1>
+    <p>Navigate our facilities and discover key locations</p>
+  </div>
+
+  <div class="map-outer-wrapper">
+    <div class="map-container-wrapper">
+      {{ map_html|safe }}
+    </div>
+  </div>
+
+  <div class="map-legend">
+    <h3>Map Legend</h3>
+    <div class="legend-items">
+      <div class="legend-item"><span class="legend-color academic"></span> Academic Blocks</div>
+      <div class="legend-item"><span class="legend-color sports"></span> Sports Facilities</div>
+      <div class="legend-item"><span class="legend-color common"></span> Common Areas</div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+

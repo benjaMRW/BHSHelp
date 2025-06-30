@@ -1,0 +1,9 @@
+flask
+pytz
+feedparser
+webdriver_manager
+selenium
+beautifulsoup4
+requests
+folium
+flask_sqlalchemy
