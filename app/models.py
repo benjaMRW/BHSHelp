@@ -1,50 +1,45 @@
-from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, Text, Boolean, DateTime
-from sqlalchemy.orm import relationship, sessionmaker, declarative_base
+from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from . import db 
+db = SQLAlchemy()  
 
-Base = declarative_base()
 
-class Person(Base):
-    __tablename__ = 'people'
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String, nullable=False)
-    email = Column(String, unique=True, nullable=False)
-    password = Column(String, nullable=False)
-    role = Column(String, nullable=False)  # "student" or "teacher"
-    hobbies = Column(Text, nullable=True)
+class Student(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    student_number = db.Column(db.String(50), unique=True, nullable=False)
+    name = db.Column(db.String(100), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100))
+    hobbies = db.Column(db.Text)
+    credits = db.Column(db.Integer, default=0)
+    destination = db.Column(db.String(100))  # career interest
+    ideas = db.relationship('Idea', backref='student', lazy=True)
+    products = db.relationship('Product', backref='student', lazy=True)
+    subjects = db.relationship('StudentSubject', backref='student', lazy=True)
+
+class Subject(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.Text)
+    block = db.Column(db.String(50))  # e.g. "A Block"
+
+class StudentSubject(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+    subject_id = db.Column(db.Integer, db.ForeignKey('subject.id'))
+
+class Idea(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+
+class Product(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    description = db.Column(db.Text)
+    price = db.Column(db.Float)
+    student_id = db.Column(db.Integer, db.ForeignKey('student.id'))
+
+
     
-    # Relationships
-    credits = relationship('Credit', back_populates='person')
-    subjects = relationship('PersonSubject', back_populates='person')
-    hobbies_association = relationship('PersonHobby', back_populates='person')
-    liked_notices = relationship('LikedNotice', back_populates='person')
-    feedbacks = relationship('Feedback', back_populates='person')
-
-# Add these new models at the bottom of your existing models.py
-class LikedNotice(Base):
-    __tablename__ = 'liked_notices'
-    id = Column(Integer, primary_key=True)
-    person_id = Column(Integer, ForeignKey('people.id'))
-    notice_title = Column(String, nullable=False)
-    notice_date = Column(String, nullable=False)
-    liked_at = Column(DateTime, default=datetime.utcnow)
-    
-    person = relationship('Person', back_populates='liked_notices')
-
-class Feedback(Base):
-    __tablename__ = 'feedbacks'
-    id = Column(Integer, primary_key=True)
-    person_id = Column(Integer, ForeignKey('people.id'))
-    idea = Column(Text, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    is_implemented = Column(Boolean, default=False)
-    
-    person = relationship('Person', back_populates='feedbacks')
-
-# Initialize Database (keep your existing code)
-engine = create_engine("sqlite:///school.db")
-Base.metadata.create_all(engine)
-
-Session = sessionmaker(bind=engine)
-session = Session()
-session.close()

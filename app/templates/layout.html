@@ -14,18 +14,25 @@
         <img src="{{ url_for('static', filename='image/BurnsideLogo.png') }}" alt="Burnside High School Logo" class="logo">
         <div class="site-title">{% block page_title %}Welcome{% endblock %}</div>
       </div>
-      {% if request.path != '/' %}
-      <button class="menu-button" onclick="toggleMenu()">☰ Menu</button>
-      {% endif %}
+      
     </div>
     <div>
-      {% if request.path == '/' %}
-      <button><a href="/login">log in</a></button>
-      {% endif %}
+{% if request.path == '/' and session.student_number %}
+<div class="auth-buttons">
+  <a href="/profile" class="btn btn--primary">profile</a>
+  <a href="{{ url_for('logout') }}" class="btn btn--secondary">Log out</a>
+</div>
+{% elif request.path == '/' %}
+  <div class="auth-buttons">
+      <a href="/register" class="btn btn--primary">Register</a>
+      <a href="/login" class="btn btn--secondary">Login</a>
+  </div>
+{% endif %}
+
     </div>
     {% if request.path != '/' %}
     <div class="dropdown">
-      <button onclick="toggleDropdown()" class="dropbtn">Menu</button>
+      <button1 onclick="toggleDropdown()" class="dropbtn">☰Menu</button1>
       <div id="dropdownContent" class="dropdown-content">
         <a href="/">Home</a>
         <a href="map">School map</a>
